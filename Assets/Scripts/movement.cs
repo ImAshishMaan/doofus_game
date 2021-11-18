@@ -1,25 +1,25 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-public class movement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     public float speed;
-    jsonController jc;
+    JsonController jc = new JsonController();
     public GameObject jsonObject;
     public GameObject GameOverUI;
 
     int score = 0;
     private void Awake()
     {
-        jc = jsonObject.GetComponent<jsonController>();
+        jc = jsonObject.GetComponent<JsonController>();
         StartCoroutine(Wait());
     }
 
     private IEnumerator Wait()
     {
-        //Debug.Log("Waiting for the json data loading");
+        Debug.Log("Waiting for the json data loading");
         yield return new WaitUntil(() => jc.isJsonLoaded == true);
-        //Debug.Log("Done");
+        Debug.Log("Done");
+        Debug.Log("JSON LOADED " + jc.isJsonLoaded);
         speed = jc.getSpeed();
     }
     private void Update()

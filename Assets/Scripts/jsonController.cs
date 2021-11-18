@@ -1,12 +1,24 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
-public class jsonController : MonoBehaviour
+public class JsonController : MonoBehaviour
 {
+
+    private static JsonController jController;
+    //private JsonController() { }
+    public static JsonController JController()
+    {
+        if(jController == null)
+        {
+            jController = new JsonController();
+        }
+        return jController;
+    }  
+
     public string jsonURL;
-    public jsonData jsnData;
+    public JsonData jsnData;
     public bool isJsonLoaded;
-    private void Awake() 
+    private void Awake()
     {
         StartCoroutine(GetJsonData(jsonURL));
     }
@@ -15,8 +27,8 @@ public class jsonController : MonoBehaviour
         Debug.Log("Processing Data, Please Wait");
         UnityWebRequest webRequest = UnityWebRequest.Get(_url);
         yield return webRequest.SendWebRequest();
-        
-        if(webRequest.result == UnityWebRequest.Result.ConnectionError)
+
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError)
         {
             //error
             Debug.Log("Something is wrong");
@@ -30,7 +42,7 @@ public class jsonController : MonoBehaviour
     private void ProcessJson(string _url)
     {
         Debug.Log(_url);
-        jsnData = JsonUtility.FromJson<jsonData>(_url);
+        jsnData = JsonUtility.FromJson<JsonData>(_url);
         Debug.Log("Controller debug:  " + jsnData.player_data.speed);
         isJsonLoaded = true;
     }

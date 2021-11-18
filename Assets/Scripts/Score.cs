@@ -4,16 +4,16 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
     public GameObject player;
-    private movement ms;
+    private Movement ms;
     public Text scoreText;
 
     private void Start()
     {
-        ms = player.GetComponent<movement>();
+        ms = player.GetComponent<Movement>();
     }
     private void Update()
     {
-        Debug.Log(ms.ScoreUpdate());
+        //Debug.Log(ms.ScoreUpdate());
         scoreText.text = ms.ScoreUpdate().ToString();
     }
 }
