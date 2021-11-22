@@ -8,7 +8,7 @@ public class JsonController : MonoBehaviour {
     public JsonData jsnData;
     public bool isJsonLoaded;
 
-    #region Singleton reg
+    // region Singleton reg
     private static JsonController instance; //will be your singleton instance
     private void Awake() {
         if(instance == null) {
@@ -22,7 +22,7 @@ public class JsonController : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-    #endregion
+    // endregion
 
     IEnumerator GetJsonData(string _url) {
         Debug.Log("Processing Data, Please Wait");

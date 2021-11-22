@@ -1,13 +1,15 @@
 using System.Collections;
 using UnityEngine;
 public class Movement : MonoBehaviour {
+
     public float speed;
     JsonController jc = new JsonController();
-    public GameObject jsonObject;
+    private GameObject jsonObject;
     public GameObject GameOverUI;
 
     int score = 0;
     private void Awake() {
+        jsonObject = GameObject.Find("jsonObject");
         jc = jsonObject.GetComponent<JsonController>();
         StartCoroutine(Wait());
     }

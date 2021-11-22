@@ -4,8 +4,9 @@ using TMPro;
 using System.Collections;
 
 public class GroundSpawn : MonoBehaviour {
+
     JsonController jc;
-    public GameObject jsonObject;
+    private GameObject jsonObject;
     float maxDestroyTime = 5f;
     float spawnTime = 2f;
 
@@ -13,6 +14,7 @@ public class GroundSpawn : MonoBehaviour {
     readonly List<Vector3> pos = new List<Vector3>() { new Vector3(9, 0, 0), new Vector3(-9, 0, 0), new Vector3(0, 0, 9), new Vector3(0, 0, -9) };
 
     private void Awake() {
+        jsonObject = GameObject.Find("jsonObject");
         jc = jsonObject.GetComponent<JsonController>();
         newGroundInstanciated = false;
         StartCoroutine(Wait());
